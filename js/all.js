@@ -29,35 +29,37 @@ $(document).ready(function () {
       var imgLi = [];
       // 
       $('.card').click(function () {
-        $(this).addClass('rotate');
-        // 
-        img[i] = $(this);
-        imgInfo[i] = $(this).find('.front').attr('src');
-        imgLi[i] = $(this);
-        i++;
-        // 
-        if ($('.rotate').length % 2 == 0) {
-          // console.log(img);
-          // console.log(imgInfo);
-          // console.log(imgLi);
-          if (imgInfo[0] == imgInfo[1]) {
-            if ($('.rotate').length == $('.card').length) {
-              setTimeout(() => {
-                location.reload();
-              }, 1000);
+        if(!$(this).hasClass('rotate')){
+          $(this).addClass('rotate');
+          // 
+          img[i] = $(this);
+          imgInfo[i] = $(this).find('.front').attr('src');
+          imgLi[i] = $(this);
+          i++;
+          // 
+          if ($('.rotate').length % 2 == 0) {
+            // console.log(img);
+            // console.log(imgInfo);
+            // console.log(imgLi);
+            if (imgInfo[0] == imgInfo[1]) {
+              if ($('.rotate').length == $('.card').length) {
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
+              } else {
+                $('.card').off('click');
+                setTimeout(() => {
+                  loop()
+                }, 500);
+              }
             } else {
               $('.card').off('click');
               setTimeout(() => {
+                imgLi[0].removeClass('rotate');
+                imgLi[1].removeClass('rotate');
                 loop()
               }, 500);
             }
-          } else {
-            $('.card').off('click');
-            setTimeout(() => {
-              imgLi[0].removeClass('rotate');
-              imgLi[1].removeClass('rotate');
-              loop()
-            }, 500);
           }
         }
       })
