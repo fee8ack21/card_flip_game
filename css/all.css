@@ -51,6 +51,10 @@ body {
   width: 120px;
   height: 175px;
   cursor: pointer;
+    -webkit-user-select:none;
+     -moz-user-select:none;
+      -ms-user-select:none;
+          user-select:none;
 }
 
 .card:active {
